@@ -1,0 +1,87 @@
+services:
+  # MySQL 8.0
+  mysql:
+    image: mysql:8.0
+    container_name: wp-mysql
+    user: "999:999"
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${WORDPRESS_DB_NAME}
+      MYSQL_USER: ${WORDPRESS_DB_USER}
+      MYSQL_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+    volumes:
+      - database:/var/lib/mysql
+    networks:
+      - wordpress-network
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "mysqladmin",
+          "ping",
+          "-h",
+          "localhost",
+          "-u",
+          "root",
+          "-p${MYSQL_ROOT_PASSWORD}",
+        ]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 30s
+
+  # WordPress 6.8.2 (カスタムイメージ)
+  wordpress:
+    image: komail9server/wordpress:onlineprofilesite6.8.2
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: wp-app
+    restart: unless-stopped
+    depends_on:
+      mysql:
+        condition: service_healthy
+    env_file:
+      - .env
+    environment:
+      WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}
+      WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
+      WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
+      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+    volumes:
+      - wordpress-runtime:/var/www/html
+      - ./docker/custom-entrypoint.sh:/usr/local/bin/custom-entrypoint.sh:ro
+      - ./docker/wp-init.sh:/usr/local/bin/wp-init.sh:ro
+    entrypoint: ["/bin/bash", "/usr/local/bin/custom-entrypoint.sh"]
+    networks:
+      - wordpress-network
+    healthcheck:
+      test: ["CMD-SHELL", "wp core is-installed --allow-root"]
+      interval: 10s
+      timeout: 3s
+      retries: 30
+      start_period: 60s
+
+  # Nginx (リバースプロキシ)
+  nginx:
+    image: nginx:1.28-bookworm
+    container_name: wp-nginx
+    restart: unless-stopped
+    depends_on:
+      - wordpress
+    ports:
+      - "127.0.0.1:8080:80"
+    volumes:
+      - wordpress-runtime:/var/www/html:ro
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - wordpress-network
+
+networks:
+  wordpress-network:
+    driver: bridge
+
+volumes:
+  database:
+  wordpress-runtime:

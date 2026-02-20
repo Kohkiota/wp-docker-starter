@@ -1,0 +1,223 @@
+{
+    "key": "group_home",
+    "title": "home",
+    "fields": [
+        {
+            "key": "field_home_img1",
+            "label": "img1",
+            "name": "img1",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_home_img2",
+            "label": "img2",
+            "name": "img2",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_home_img3",
+            "label": "img3",
+            "name": "img3",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_home_img4",
+            "label": "img4",
+            "name": "img4",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_home_img5",
+            "label": "img5",
+            "name": "img5",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_home_img6",
+            "label": "img6",
+            "name": "img6",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_home_img7",
+            "label": "img7",
+            "name": "img7",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_home_img8",
+            "label": "img8",
+            "name": "img8",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_home_img9",
+            "label": "img9",
+            "name": "img9",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_home_img10",
+            "label": "img10",
+            "name": "img10",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_home_img11",
+            "label": "img11",
+            "name": "img11",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_home_text1",
+            "label": "text1",
+            "name": "text1",
+            "type": "wysiwyg",
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1
+        },
+        {
+            "key": "field_home_text2",
+            "label": "text2",
+            "name": "text2",
+            "type": "wysiwyg",
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1
+        },
+        {
+            "key": "field_home_text3",
+            "label": "text3",
+            "name": "text3",
+            "type": "wysiwyg",
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1
+        },
+        {
+            "key": "field_home_text4",
+            "label": "text4",
+            "name": "text4",
+            "type": "wysiwyg",
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1
+        },
+        {
+            "key": "field_home_text5",
+            "label": "text5",
+            "name": "text5",
+            "type": "wysiwyg",
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1
+        },
+        {
+            "key": "field_home_text6",
+            "label": "text6",
+            "name": "text6",
+            "type": "wysiwyg",
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1
+        },
+                {
+            "key": "field_home_text7",
+            "label": "text7",
+            "name": "text7",
+            "type": "wysiwyg",
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1
+        },
+                {
+            "key": "field_home_text8",
+            "label": "text8",
+            "name": "text8",
+            "type": "wysiwyg",
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1
+        },
+                {
+            "key": "field_home_text9",
+            "label": "text9",
+            "name": "text9",
+            "type": "wysiwyg",
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1
+        },
+        {
+            "key": "field_home_oembed1",
+            "label": "oembed1",
+            "name": "oembed1",
+            "type": "oembed",
+            "width": "",
+            "height": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "default"
+            },
+            {
+                "param": "page",
+                "operator": "==",
+                "value": "___PAGE_ID_HOME___"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true
+}

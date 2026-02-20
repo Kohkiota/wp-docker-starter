@@ -1,0 +1,143 @@
+<div class="flex flex-col w-full border-x border-accent text-sm">
+  <div class="marked sm:flex">
+    <div
+      class="p-2 flex justify-between border-t border-accent bg-little-gr font-normal text-left sm:w-96"
+    >
+      <div>お問い合わせ項目</div>
+      <span
+        class="required inline-flex items-center justify-center w-8 h-5 text-xs text-white bg-accent"
+        >必須</span
+      >
+    </div>
+    <div
+      class="block p-2 border-t border-accent text-left sm:w-full sm:border-l sm:border-accent"
+    >
+      [select* form-subject class:form-subject first_as_label
+      "選択してください▼" "レッスンの申し込み" "演奏のご依頼" "お仕事のご依頼"
+      "その他"]
+    </div>
+  </div>
+  <div class="marked sm:flex">
+    <div
+      class="p-2 flex justify-between border-t border-accent bg-little-gr font-normal text-left sm:w-96"
+    >
+      <div>お名前</div>
+      <span
+        class="required inline-flex items-center justify-center w-8 h-5 text-xs text-white bg-accent"
+        >必須</span
+      >
+    </div>
+    <div
+      class="p-2 border-t border-accent text-left sm:w-full sm:border-l sm:border-accent"
+    >
+      [text* form-fullname autocomplete:name class:form-fullname minlength:1
+      maxlength:100 placeholder "田中　太郎"]
+    </div>
+  </div>
+  <div class="marked sm:flex">
+    <div
+      class="p-2 flex justify-between border-t border-accent bg-little-gr font-normal text-left sm:w-96"
+    >
+      <div>フリガナ</div>
+      <span
+        class="required inline-flex items-center justify-center w-8 h-5 text-xs text-white bg-accent"
+        >必須</span
+      >
+    </div>
+    <div
+      class="p-2 border-t border-accent text-left sm:w-full sm:border-l sm:border-accent"
+    >
+      [text* form-kana class:form-kana minlength:1 minlength:1 maxlength:150
+      placeholder "タナカ　タロウ"]
+    </div>
+  </div>
+  <div class="marked sm:flex">
+    <div
+      class="p-2 flex justify-between border-t border-accent bg-little-gr font-normal text-left sm:w-96"
+    >
+      <div>メールアドレス</div>
+      <span
+        class="required inline-flex items-center justify-center w-8 h-5 text-xs text-white bg-accent"
+        >必須</span
+      >
+    </div>
+    <div
+      class="p-2 border-t border-accent text-left sm:w-full sm:border-l sm:border-accent"
+    >
+      [email* form-email autocomplete:email class:form-email minlength:1
+      maxlength:1000 placeholder "mail@example.com"]
+    </div>
+  </div>
+  <div class="marked sm:flex">
+    <div
+      class="p-2 flex justify-between border-t border-accent bg-little-gr font-normal text-left sm:w-96"
+    >
+      <div>電話番号</div>
+      <span
+        class="required inline-flex items-center justify-center w-8 h-5 text-xs text-white bg-accent"
+        >必須</span
+      >
+    </div>
+    <div
+      class="p-2 border-t border-accent text-left sm:w-full sm:border-l sm:border-accent"
+    >
+      [tel* form-tel autocomplete:tel class:form-tel minlength:10 maxlength:11
+      placeholder "09012345678"]
+    </div>
+  </div>
+  <div class="sm:flex">
+    <div
+      class="p-2 border-t border-accent bg-little-gr font-normal text-left sm:w-96"
+    >
+      郵便番号
+    </div>
+    <div
+      class="p-2 border-t border-accent text-left sm:w-full sm:border-l sm:border-accent"
+    >
+      [text form-zip class:form-zip placeholder "1231234"]
+    </div>
+  </div>
+  <div class="sm:flex">
+    <div
+      class="p-2 border-t border-accent bg-little-gr font-normal text-left sm:w-96"
+    >
+      住所
+    </div>
+    <div
+      class="p-2 border-t border-accent text-left sm:w-full sm:border-l sm:border-accent"
+    >
+      [text form-address class:form-address placeholder
+      "東京都〇区１－１－１　マンション101号室"]
+    </div>
+  </div>
+  <div class="marked sm:flex">
+    <div
+      class="p-2 flex justify-between border-t border-accent bg-little-gr font-normal text-left sm:w-96"
+    >
+      <div>お問い合わせ内容</div>
+      <span
+        class="required inline-flex items-center justify-center w-8 h-5 text-xs text-white bg-accent"
+        >必須</span
+      >
+    </div>
+    <div
+      class="p-2 border-t border-accent text-left sm:w-full sm:border-l sm:border-accent"
+    >
+      [textarea* form-message class:form-message minlength:5 maxlength:5000
+      placeholder] お問い合わせ内容を入力してください [/textarea*]
+    </div>
+  </div>
+</div>
+<!-- チェックボックスと送信ボタン -->
+<div
+  class="check-and-submit pt-6 flex flex-col items-center w-full border-t border-accent"
+>
+  [turnstile]
+  <div>
+    [acceptance form-authcheck id:ckbx-submit class:form-authcheck]
+    下記プライバシーポリシーに同意しました [/acceptance]
+  </div>
+  <div class="mt-2">
+    [submit id:btn-submit class:form-submitbtn class:luxury-btn "送信する"]
+  </div>
+</div>

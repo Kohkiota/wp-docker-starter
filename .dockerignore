@@ -1,0 +1,65 @@
+# 環境固有の画像データ（運用時にvolume mountで管理）
+/wordpress/wp-content/uploads/*
+
+# キャッシュ・一時ファイル
+/wordpress/wp-content/cache/
+/wordpress/wp-content/upgrade/
+/wordpress/wp-content/backup*/
+/wordpress/wp-content/backups/
+/wordpress/wp-content/ai1wm-backups/
+/wordpress/wp-content/aiopws_backups/
+/wordpress/wp-content/updraft/
+
+# Git管理ファイル
+.git/
+.gitignore
+.github/
+
+# Docker関連（イメージ作成時は不要）
+docker-compose.yml
+docker-compose.dev.yml
+Dockerfile
+.dockerignore
+.env
+.env.example
+
+docker/nginx/
+docker/custom-entrypoint.sh
+docker/wp-init.sh
+Makefile
+init.sh
+scripts/
+data/
+backups/
+
+# Node.js（ビルド済みのCSSのみ含める）
+/wordpress/wp-content/themes/onlineprofiletheme/node_modules/
+# /wordpress/wp-content/themes/onlineprofiletheme/package-lock.json
+# /wordpress/wp-content/themes/onlineprofiletheme/yarn.lock
+# /wordpress/wp-content/themes/onlineprofiletheme/bun.lock
+# /wordpress/wp-content/themes/onlineprofiletheme/package.json
+# /wordpress/wp-content/themes/onlineprofiletheme/tailwind.config.js
+
+# ビルドソースファイル（成果物のみ含める）
+# /wordpress/wp-content/themes/onlineprofiletheme/assets/css/input.css
+# /wordpress/wp-content/themes/onlineprofiletheme/assets/scss/
+
+# 開発ツール設定
+.vscode/
+.idea/
+*.sublime-*
+
+# OS固有ファイル
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ログファイル
+*.log
+/wordpress/wp-content/debug.log
+
+# ドキュメント・スクリプト（イメージには不要）
+README.md
+*.md
+
+

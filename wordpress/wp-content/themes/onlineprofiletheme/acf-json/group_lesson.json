@@ -1,0 +1,162 @@
+{
+    "key": "group_lesson",
+    "title": "lesson",
+    "fields": [
+        {
+            "key": "field_lesson_img1",
+            "label": "img1",
+            "name": "img1",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_lesson_img2",
+            "label": "img2",
+            "name": "img2",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_lesson_img3",
+            "label": "img3",
+            "name": "img3",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_lesson_img4",
+            "label": "img4",
+            "name": "img4",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_lesson_text1",
+            "label": "text1",
+            "name": "text1",
+            "type": "wysiwyg",
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1
+        },
+        {
+            "key": "field_lesson_text2",
+            "label": "text2",
+            "name": "text2",
+            "type": "wysiwyg",
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1
+        },
+        {
+            "key": "field_lesson_text3",
+            "label": "text3",
+            "name": "text3",
+            "type": "wysiwyg",
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1
+        },
+        {
+            "key": "field_lesson_text4",
+            "label": "text4",
+            "name": "text4",
+            "type": "wysiwyg",
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1
+        },
+        {
+            "key": "field_lesson_text5",
+            "label": "text5",
+            "name": "text5",
+            "type": "wysiwyg",
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1
+        },
+        {
+            "key": "field_lesson_text6",
+            "label": "text6",
+            "name": "text6",
+            "type": "wysiwyg",
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1
+        },
+        {
+            "key": "field_lesson_text7",
+            "label": "text7",
+            "name": "text7",
+            "type": "wysiwyg",
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1
+        },
+        {
+            "key": "field_lesson_text8",
+            "label": "text8",
+            "name": "text8",
+            "type": "wysiwyg",
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1
+        },
+        {
+            "key": "field_lesson_text9",
+            "label": "text9",
+            "name": "text9",
+            "type": "wysiwyg",
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1
+        },
+        {
+            "key": "field_lesson_text10",
+            "label": "text10",
+            "name": "text10",
+            "type": "wysiwyg",
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "default"
+            },
+            {
+                "param": "page",
+                "operator": "==",
+                "value": "___PAGE_ID_LESSON___"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true
+}

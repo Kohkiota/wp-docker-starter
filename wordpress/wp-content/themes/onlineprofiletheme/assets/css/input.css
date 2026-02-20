@@ -1,0 +1,86 @@
+@charset 'UTF-8';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-size: 100%;
+    line-height: 1.7;
+    color: #555;
+  }
+  body {
+    font-family: "Cormorant Garamond", "Noto Serif JP", serif;
+  }
+  a {
+    text-decoration: none;
+  }
+  img {
+    max-width: 100%;
+  }
+}
+@layer components {
+  .mylink {
+    @apply active:opacity-80 hover:text-gray-500 hover:underline;
+  }
+
+  /* ===================== WP関連 ===================== */
+  /* WPのペジネーションにつけるスタイル */
+  .my-pagination-styles {
+    @apply flex justify-center items-center h-16 mt-6;
+  }
+  .my-pagination-styles > .page-numbers {
+    @apply inline-flex justify-center items-center h-9 w-9 m-1 border-accent font-mono font-light text-lg text-accent bg-white hover:text-white hover:bg-accent;
+  }
+  .my-pagination-styles > .page-numbers.prev,
+  .my-pagination-styles > .page-numbers.next,
+  .my-pagination-styles > .page-numbers.current {
+    @apply bg-accent text-white;
+  }
+
+  /* WPiframe埋め込み対応 */
+  .for-youtube-iframe > iframe {
+    @apply w-full h-full;
+  }
+
+  /* contactform7 */
+  #cf7-form > form {
+    @apply flex flex-col items-center w-full;
+  }
+
+  .check-and-submit > div:last-child > p {
+    @apply flex flex-col items-center;
+  }
+
+  .check-and-submit > div:last-child > p > span {
+    @apply mt-2;
+  }
+
+  /* #btn-submit {
+        @apply py-3 px-4 rounded-lg border-black text-white bg-main1 text-3xl hover:cursor-pointer;
+    } */
+
+  .form-subject {
+    @apply text-left pl-2 border border-accent bg-white rounded;
+  }
+
+  .form-fullname,
+  .form-kana,
+  .form-email,
+  .form-tel,
+  .form-zip,
+  .form-address,
+  .form-message {
+    @apply w-full pl-2 border border-accent bg-white rounded;
+  }
+
+  .form-tel {
+    @apply w-28;
+  }
+  .form-zip {
+    @apply w-20;
+  }
+  .form-message {
+    @apply h-20;
+  }
+}

@@ -1,0 +1,6 @@
+data/
+backups/
+wordpress/*
+!wordpress/wp-content/mu-plugins
+!wordpress/wp-content/themes/onlineprofiletheme
+wordpress/wp-content/themes/onlineprofiletheme/assets/images

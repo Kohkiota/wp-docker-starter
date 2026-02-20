@@ -1,0 +1,12 @@
+{
+  "devDependencies": {
+    "browser-sync": "3.0.3",
+    "concurrently": "9.2.0",
+    "sass": "1.89.2",
+    "tailwindcss": "3.4.17"
+  },
+  "scripts": {
+    "dev": "concurrently \"tailwindcss -i ./assets/css/input.css -o ./assets/css/output.css --watch\" \"sass ./assets/scss/:./assets/css/ --watch --no-source-map\" \"browser-sync start --config bs-config.js\"",
+    "build": "tailwindcss -i ./assets/css/input.css -o ./assets/css/output.css --minify && sass ./assets/scss/:./assets/css/ --style compressed --no-source-map"
+  }
+}

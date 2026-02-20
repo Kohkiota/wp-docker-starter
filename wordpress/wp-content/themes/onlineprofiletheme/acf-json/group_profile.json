@@ -1,0 +1,45 @@
+{
+    "key": "group_profile",
+    "title": "profile",
+    "fields": [
+        {
+            "key": "field_profile_img1",
+            "label": "img1",
+            "name": "img1",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_profile_text1",
+            "label": "text1",
+            "name": "text1",
+            "type": "wysiwyg",
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "default"
+            },
+            {
+                "param": "page",
+                "operator": "==",
+                "value": "___PAGE_ID_PROFILE___"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true
+}

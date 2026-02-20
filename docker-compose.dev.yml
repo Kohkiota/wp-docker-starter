@@ -1,0 +1,41 @@
+# 開発環境（ベースファイルを bind mount に上書き）
+# 使用: docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d
+# Node付き: docker compose -f docker-compose.yml -f docker-compose.dev.yml --profile dev up -d
+services:
+  wordpress:
+    volumes:
+      - ./data/wordpress:/var/www/html
+      - ./docker/custom-entrypoint.sh:/usr/local/bin/custom-entrypoint.sh:ro
+      - ./docker/wp-init.sh:/usr/local/bin/wp-init.sh:ro
+
+  nginx:
+    volumes:
+      - ./data/wordpress:/var/www/html:ro
+      - ./docker/nginx/dev.conf:/etc/nginx/conf.d/default.conf:ro
+
+
+  # 開発用 Node.js（Tailwind CSS + Sass + BrowserSync）
+  node:
+    image: node:20-alpine
+    container_name: wp-node
+    user: "0:0"
+    working_dir: /var/www/html/wp-content/themes/${THEME_NAME}
+    ports:
+      - "3000:3000"
+      - "3001:3001"
+    volumes:
+      - ./data/wordpress:/var/www/html
+      - node_modules:/var/www/html/wp-content/themes/${THEME_NAME}/node_modules
+    command: sh -c 'if [ -d node_modules ] && [ "$(ls -A node_modules 2>/dev/null)" ]; then npm run dev; else npm ci && npm run dev; fi'
+    depends_on:
+      wordpress:
+        condition: service_healthy
+      nginx:
+        condition: service_started
+    networks:
+      - wordpress-network
+    profiles:
+      - dev
+
+volumes:
+  node_modules:

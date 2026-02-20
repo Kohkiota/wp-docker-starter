@@ -1,0 +1,66 @@
+{
+    "key": "group_gallery",
+    "title": "gallery",
+    "fields": [
+        {
+            "key": "field_gallery_oembed1",
+            "label": "oembed1",
+            "name": "oembed1",
+            "type": "oembed",
+            "width": "",
+            "height": ""
+        },
+        {
+            "key": "field_gallery_oembed2",
+            "label": "oembed2",
+            "name": "oembed2",
+            "type": "oembed",
+            "width": "",
+            "height": ""
+        },
+        {
+            "key": "field_gallery_oembed3",
+            "label": "oembed3",
+            "name": "oembed3",
+            "type": "oembed",
+            "width": "",
+            "height": ""
+        },
+        {
+            "key": "field_gallery_oembed4",
+            "label": "oembed4",
+            "name": "oembed4",
+            "type": "oembed",
+            "width": "",
+            "height": ""
+        },
+        {
+            "key": "field_gallery_oembed5",
+            "label": "oembed5",
+            "name": "oembed5",
+            "type": "oembed",
+            "width": "",
+            "height": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "default"
+            },
+            {
+                "param": "page",
+                "operator": "==",
+                "value": "___PAGE_ID_GALLERY___"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true
+}

@@ -1,0 +1,97 @@
+# Wordpress - ignore core, configuration, examples, uploads and logs.
+# https://github.com/github/gitignore/blob/main/WordPress.gitignore
+
+# Core
+#
+# Note: if you want to stage/commit WP core files
+# you can delete this whole section/until Configuration.
+# /wp-admin/
+# /wp-content/index.php
+# /wp-content/languages
+# /wp-content/plugins/index.php
+# /wp-content/themes/index.php
+# /wp-includes/
+# /index.php
+# /license.txt
+# /readme.html
+# /wp-*.php
+# /xmlrpc.php
+
+# Configuration
+/wordpress/wp-config.php
+
+# Example themes
+/wordpress/wp-content/themes/twenty*/
+
+# Example plugin
+/wordpress/wp-content/plugins/hello.php
+
+# Uploads
+/wordpress/wp-content/uploads/
+
+# Log files
+/wordpress/*.log
+
+# htaccess
+/wordpress/.htaccess
+
+# All plugins
+#
+# Note: If you wish to whitelist plugins,
+# uncomment the next line
+#/wp-content/plugins
+
+# All themes
+#
+# Note: If you wish to whitelist themes,
+# uncomment the next line
+#/wp-content/themes
+
+# OS固有・エディタ
+.env
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.sublime-*
+*~
+
+# Node.js（既存のビルドツール用）
+**/node_modules/
+**/npm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
+
+# WordPress関連の一時ファイル
+/wordpress/wp-content/upgrade/
+/wordpress/wp-content/upgrade-temp-backup/
+/wordpress/wp-content/debug.log
+/wordpress/wp-content/cache/
+/wordpress/wp-content/backup*/
+/wordpress/wp-content/backups/
+/wordpress/wp-content/languages/
+/wordpress/wp-content/ai1wm-backups/
+/wordpress/wp-content/aiowps_backups/
+# /wordpress/wp-content/mu-plugins/
+/wordpress/wp-content/updraft/
+/wordpress/wp-content/siteguard/
+
+# その他のWordPress関連ファイル
+/wordpress/aios-bootstrap.php
+/wordpress/local-xdebuginfo.php
+/wordpress/wp-activate.php
+/wordpress/wp-blog-header.php
+/wordpress/wp-comments-post.php
+
+# 一時ファイル
+*.tmp
+*.temp
+error_log
+
+# tailwind, scssの出力ファイル
+# /wordpress/wp-content/themes/onlineprofiletheme/assets/css/main.css
+# /wordpress/wp-content/themes/onlineprofiletheme/assets/css/output.css
+
+# Docker管理用、永続化フォルダ
+/data
+/backups

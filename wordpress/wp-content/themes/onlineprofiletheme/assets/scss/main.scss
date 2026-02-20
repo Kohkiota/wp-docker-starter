@@ -1,0 +1,640 @@
+/* ====================共通コンポーネント======================= */
+/* ====================　主にJS関連　======================= */
+// * {
+//   border: 1px solid red;
+// }
+/*
+画面遷移
+================================================ */
+#loading {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#shutter-top {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  z-index: 997;
+  top: 0;
+  left: 0;
+  background: white;
+}
+
+#shutter-bottom {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  z-index: 997;
+  bottom: 0;
+  left: 0;
+  background: white;
+}
+
+#opening-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 0.1em;
+  z-index: 998;
+  white-space: nowrap;
+  
+  span {
+    display: inline-block;
+    background: linear-gradient(to top, #000 50%, #aaa 50%); // 下=黒、上=グレー
+    background-size: 100% 200%; // 高さ2倍
+    background-position: 0% 0%; // 初期：上半分表示
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent; // 元の文字色を透明に
+  }
+}
+
+/*
+スライドメニュー
+================================================ */
+/* スライドメニューパネル */
+#menu-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 50;
+  box-shadow: none;
+  transform: translateX(100%);
+  will-change: transform;
+
+  &.fade-in { will-change: transform, opacity; }
+
+  // 重すぎるので封印
+  // &.active {
+  //     box-shadow: 0px 5px 15px 0px #777777;
+  // }
+}
+
+/*
+ヘッダー
+================================================ */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 64px;
+  z-index: 40;
+
+  &.header-mod {
+    transition: all .4s;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+  }
+
+  /* sm以上では blur を無効化 */
+  @media (min-width: 640px) {
+    &.header-mod {
+      transition: all .4s;
+      background: transparent; // 必要なら
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+  }
+  @media (min-width: 640px) {
+    display: none;
+  }
+}
+
+#header-title {
+  color: black;
+  transition: all .4s;
+
+  &-wrapper {
+    padding-left: 14px;
+    padding-top: 14px;
+    width: 260px;
+  }
+
+  p {
+    line-height: 1.4rem;
+    // white-space: nowrap;
+  }
+  .title1 {
+    font-size: 24px;
+    letter-spacing: 0.4rem;
+  }
+  .title2 {
+    font-size: 12px;
+    letter-spacing: 0.125rem;
+  }
+
+
+  &.is-white {
+    color: white;
+  }
+}
+
+// ハンバーガーボタン
+.btn-menu {
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 60;
+    height: 64px;
+    width: 64px;
+    opacity: 0.8;
+
+    &__line {
+        display: inline-block;
+        position: absolute;
+        right: 16px;
+        width: 32px;
+        height: 2px;
+        transition: all .4s;
+        background-color: black;
+
+        &--1 {
+            top: 20px;
+        }
+        &--2 {
+            top: 30px;
+            width: 24px;
+        }
+        &--3 {
+            top: 40px;
+            width: 16px;
+        }
+
+        &.is-white {
+          background-color: white;
+        }
+    }
+}
+
+
+/* ==================== HOMEページ ======================= */
+
+/*
+スライドショー
+================================================ */
+/* コンテナ */
+#slideshow-container {
+  position: relative;
+  overflow: hidden;
+  width: 101%; //計算ずれによる白線はみだし対策
+
+  /* mobile default */
+  height: 40vh;
+  // height: 100vh;
+  // max-height: 100svh; // iOS対策
+  aspect-ratio: auto;
+
+  /* sm以上 */
+  @media (min-width: 640px) {
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+}
+
+/* スライド画像 */
+.slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+
+    picture,
+    img {
+        display: block;
+        height: 100%;
+        width: 100%;
+    }
+
+    img {
+        object-fit: cover;
+        transform: scale(1);
+    }
+
+    &.active {
+        opacity: 1;
+    }
+
+    &.zooming img {
+        animation: kenburns 6.5s linear forwards;
+    }
+}
+
+@keyframes kenburns {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.08);
+    }
+}
+
+// viewmoreボタン
+#viewmore-btn {
+    & #viewmore-btn-ball {
+        position: absolute;
+        right: 33%;
+        transition: right 0.3s ease;
+    }
+    &:hover {
+        & #viewmore-btn-ball {
+            right: 0;
+        }
+    }
+}
+
+// トップのスクロール促すアニメ
+// main.scss
+
+// スクロールアニメーション用変数
+$scroll-line-width: 2px;
+$scroll-line-height: 24px;
+$scroll-animation-duration: 1.5s;
+
+#scroll-anime {
+    position: relative;
+    width: $scroll-line-width;
+    height: $scroll-line-height;
+    overflow: hidden;
+
+    &-wrapper {
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+    }
+
+    &-base {
+        position: absolute;
+        inset: 0;
+        background-color: white;
+        opacity: 0.3;
+    }
+    
+    &-top {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 80%;
+        background: linear-gradient(
+            to bottom, 
+            transparent, 
+            white 30%, 
+            white 70%, 
+            transparent
+        );
+        animation: scroll-flow $scroll-animation-duration ease-in-out infinite;
+    }
+}
+
+@keyframes scroll-flow {
+    0%, 100% { 
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    10%, 90% { 
+        opacity: 1;
+    }
+    100% { 
+        transform: translateY(200%);
+    }
+}
+
+// シャドー
+.nice-shadow{
+    box-shadow: 0 4px 6px rgba(0,0,0,.1),
+    0 1px 3px rgba(0,0,0,.08);
+}
+
+
+/* ==================== LESSONページ ======================= */
+#review {
+  &1-name,
+  &1-title > *,
+  &1-text > * ,
+  &2-name,
+  &2-title > *,
+  &2-text > * {
+    font-family: 'Noto Serif JP', serif;  
+  }
+
+  &1-name,
+  &2-name{
+    font-size: 24px;
+  }
+  
+  &1-title,
+  &2-title{
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  &1-text,
+  &2-text{
+    font-size: 16px;
+  }
+}
+
+
+
+// 高級感のあるボタン
+
+// ========================================
+// 変数定義
+// ========================================
+
+// 共通カラー
+$color-accent: #dac7de;
+$color-accent-hover: #e5d6e8;
+$color-accent-border: #c9b3ce;
+
+// カテゴリーボタンカラー
+$category-bg: rgba(24, 24, 27, 0.85);
+$category-bg-hover: rgba(39, 39, 42, 0.9);
+$category-bg-active: rgba(255, 255, 255, 0.95);
+$category-border: rgba(255, 255, 255, 0.15);
+$category-border-active: rgba(218, 199, 222, 0.6);
+
+// シャドウ定義
+$shadow-accent: 0 4px 20px rgba(218, 199, 222, 0.4), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+$shadow-accent-hover: 0 8px 30px rgba(218, 199, 222, 0.5);
+$shadow-accent-active: 0 2px 10px rgba(218, 199, 222, 0.3);
+
+$shadow-category: 0 4px 16px rgba(0, 0, 0, 0.25), 
+                  inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                  inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+$shadow-category-hover: 0 6px 24px rgba(0, 0, 0, 0.35),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.15),
+                        inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+$shadow-category-active: 0 4px 20px rgba(218, 199, 222, 0.4),
+                         inset 0 2px 4px rgba(255, 255, 255, 0.9);
+
+// トランジション
+$transition-duration: 300ms;
+$transition-easing: cubic-bezier(0.4, 0, 0.2, 1);
+
+
+// ========================================
+// 共通ミックスイン
+// ========================================
+
+// ボタン共通状態
+@mixin button-states {
+  &:focus-visible {
+    box-shadow: 0 0 0 2px $color-accent;
+  }
+
+  &:disabled {
+    background: rgba(156, 163, 175, 0.4);
+    color: rgba(156, 163, 175, 0.7);
+    border-color: rgba(156, 163, 175, 0.3);
+    box-shadow: none;
+    opacity: 0.8;
+    pointer-events: none;
+    cursor: not-allowed;
+    
+    // 光沢エフェクトも抑える
+    &::before {
+      opacity: 0.3;
+    }
+  }
+}
+
+// ボタンベーススタイル
+@mixin button-base($padding, $border-radius, $font-size, $width: null, $height: null) {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $padding;
+  border-radius: $border-radius;
+  font-size: $font-size;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all $transition-duration $transition-easing;
+  outline: none;
+  border: none;
+  min-width: 0;
+
+  @if $width  { width: $width; }
+  @if $height { height: $height; }
+  
+  @include button-states;
+}
+
+// アクセントスタイル
+@mixin button-accent-style {
+  background: $color-accent;
+  color: white;
+  box-shadow: $shadow-accent;
+  border: 1px solid $color-accent-border;
+
+  &:hover {
+    background: $color-accent-hover;
+    box-shadow: $shadow-accent-hover;
+  }
+
+  &:active {
+    box-shadow: $shadow-accent-active;
+  }
+}
+
+// カテゴリーボタンスタイル
+@mixin category-button-style {
+  // カテゴリー固有の調整
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  
+  // ガラス調ベーススタイル（黒背景・白文字）
+  background: $category-bg;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: rgba(255, 255, 255, 0.95);
+  border: 1px solid $category-border;
+  box-shadow: $shadow-category;
+
+  // ガラスの光沢エフェクト
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.12) 0%,
+      rgba(255, 255, 255, 0.02) 100%
+    );
+    border-radius: 3px 3px 0 0;
+    pointer-events: none;
+  }
+
+  &:hover {
+    background: $category-bg-hover;
+    border-color: rgba(255, 255, 255, 0.25);
+    box-shadow: $shadow-category-hover;
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  // 選択状態（アクティブなカテゴリー）
+  &--active,
+  &.is-active {
+    background: $category-bg-active;
+    color: #18181b;
+    border-color: $category-border-active;
+    box-shadow: $shadow-category-active;
+    font-weight: 600;
+
+    &::before {
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.9) 0%,
+        rgba(255, 255, 255, 0.3) 100%
+      );
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 2px;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        $color-accent 50%,
+        transparent 100%
+      );
+      border-radius: 1px;
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 1);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 24px rgba(218, 199, 222, 0.5),
+                  inset 0 2px 4px rgba(255, 255, 255, 0.9);
+    }
+  }
+}
+
+
+// ========================================
+// ボタンクラス定義（4種類）
+// ========================================
+
+// 通常サイズボタン（アクセントカラー）
+.luxury-btn {
+  @include button-base(0.75rem 2rem, 2px, 16px);
+  @include button-accent-style;
+}
+
+// ミニサイズボタン（アクセントカラー）
+.luxury-btn-mini {
+  @include button-base(0rem 0.4rem, 15px, 12px);
+  @include button-accent-style;
+}
+
+// 通常サイズカテゴリーボタン（ガラス調）
+.luxury-btn-category {
+  @include button-base(0.5rem 1.25rem, 4px, 13px);
+  @include category-button-style;
+}
+
+// ミニサイズカテゴリーボタン（ガラス調）
+.luxury-btn-category-mini {
+  @include button-base(0.25rem 0.75rem, 3px, 11px, $width: 120px);
+  @include category-button-style;
+}
+
+
+/*
+スクロールフェードイン
+================================================ */
+.scroll-fade-in {
+  opacity: 0;
+  transform: translateY(80px);
+  transition: opacity 1.2s ease, transform 1.2s ease;
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/*
+footerの上に戻るボタン
+================================================ */
+#up-btn{
+    position:fixed;
+    bottom:1rem;
+    right: 1rem;
+    z-index: 30;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(1rem);
+    transition: all 0.4s ease-in-out;
+
+    &.show {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// フッターのページボタン
+.footer-nav-link {
+  display: block;
+  min-width: 60px;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+
+  &:hover {
+    color: #fff;
+    text-shadow: 
+      0 0 10px rgba(255, 255, 255, 0.8),
+      0 0 20px rgba(255, 255, 255, 0.5),
+      0 0 30px rgba(255, 255, 255, 0.3);
+    letter-spacing: 0.02em;
+  }
+  
+  // 下線のアニメーション効果（オプション）
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    width: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #fff, transparent);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+  }
+  
+  &:hover::after {
+    width: 100%;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+  }
+}
+
+
